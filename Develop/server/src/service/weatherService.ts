@@ -10,17 +10,32 @@ interface Coordinates {
 // TODO: Define a class for the Weather object
 class Weather {
   id: string;
-  main: string;
+  tempF: string;
   description: string;
   icon: string;
   city: string;
+  date: string;
+  windSpeed: string;
+  humidity: string;
 
-  constructor(id: string, main: string, description: string, icon: string, city: string) {
-      this.id = id;
-      this.main = main;
-      this.description = description;
-      this.icon = icon;
-      this.city = city
+  constructor(
+    id: string,
+    tempF: string,
+    description: string,
+    icon: string,
+    city: string,
+    date: string,
+    windSpeed: string,
+    humidity: string
+  ) {
+    this.id = id;
+    this.tempF = tempF;
+    this.description = description;
+    this.icon = icon;
+    this.city = city;
+    this.date = date;
+    this.windSpeed = windSpeed;
+    this.humidity = humidity;
   }
 }
 
@@ -33,11 +48,12 @@ class WeatherService {
   // TODO: Create fetchLocationData method
   private async fetchLocationData(query: string) {
     const geocodeQuery = this.buildGeocodeQuery(query);
+    console.log(geocodeQuery);
     const response = await fetch(geocodeQuery);
     const data = await response.json();
     
-    if (data.coord) {
-      return { lat: data.coord.lat, lon: data.coord.lon };
+    if (data.city.coord) {
+      return { lat: data.city.coord.lat, lon: data.city.coord.lon };
     } else {
       throw new Error('Location not found');
     }
@@ -74,11 +90,14 @@ class WeatherService {
   private parseCurrentWeather(response: any) {
     const weather = response.list[0];
       return new Weather(
-        weather.weather[0].id,
-        weather.weather[0].main,
+        weather.weather[0].id, 
+        weather.main.temp, 
         weather.weather[0].description,
-        weather.weather[0].icon,
-        response.city.name
+        weather.weather[0].icon, 
+        response.city.name,
+        weather.dt_txt,
+        weather.wind.speed,
+        weather.main.humidity
       );
   }
 
@@ -91,10 +110,13 @@ class WeatherService {
       // Create a new Weather object for each forecast entry
       const forecastWeather = new Weather(
         weather.weather[0].id,
-        weather.weather[0].main,
+        weather.main.temp,
         weather.weather[0].description,
         weather.weather[0].icon,
-        currentWeather.city
+        currentWeather.city,
+        weather.dt_txt,
+        weather.wind.speed,
+        weather.main.humidity
       );
 
       // Push the Weather object into the forecast array
@@ -118,8 +140,7 @@ class WeatherService {
     // Build the forecast array using the weather data
     const forecast = this.buildForecastArray(currentWeather, weatherData.list);
 
-    // Return both the current weather and the forecast array
-    return { currentWeather, forecast };
+    return forecast;
   }
 }
 

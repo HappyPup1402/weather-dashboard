@@ -1,1 +1,54 @@
-[]
+[
+	{
+		"name": "Boston",
+		"id": "4dd56dee-af08-46f1-b52d-ea87018c0df7",
+		"coord": {
+			"lat": 0,
+			"lon": 0
+		},
+		"country": "",
+		"population": 0,
+		"timezone": 0,
+		"sunrise": 0,
+		"sunset": 0
+	},
+	{
+		"name": "Los Angeles",
+		"id": "b8845c40-4362-4cd8-92ce-31347e2ab57c",
+		"coord": {
+			"lat": 0,
+			"lon": 0
+		},
+		"country": "",
+		"population": 0,
+		"timezone": 0,
+		"sunrise": 0,
+		"sunset": 0
+	},
+	{
+		"name": "Zocca",
+		"id": "fa0bb6f0-2685-432a-bd05-5ba96de8edd5",
+		"coord": {
+			"lat": 0,
+			"lon": 0
+		},
+		"country": "",
+		"population": 0,
+		"timezone": 0,
+		"sunrise": 0,
+		"sunset": 0
+	},
+	{
+		"name": "Alaska",
+		"id": "436c5c48-622a-4050-972f-89a6ed5e343e",
+		"coord": {
+			"lat": 0,
+			"lon": 0
+		},
+		"country": "",
+		"population": 0,
+		"timezone": 0,
+		"sunrise": 0,
+		"sunset": 0
+	}
+]
