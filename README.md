@@ -61,7 +61,7 @@ The application uses the OpenWeather 5-day forecast API to retrieve weather data
 
 ## Deployment
 
-Deployment link: 
+Deployment link: https://weather-dashboard-kt09.onrender.com
 
 ---
 
