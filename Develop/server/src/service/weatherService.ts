@@ -105,8 +105,10 @@ class WeatherService {
   private buildForecastArray(currentWeather: Weather, weatherData: any[]): Weather[] {
     const forecastArray: Weather[] = [];
 
+    const limitedWeatherData = weatherData.slice(0, 6);
+
     // Loop through the weather data array
-    for (const weather of weatherData) {
+    for (const weather of limitedWeatherData) {
       // Create a new Weather object for each forecast entry
       const forecastWeather = new Weather(
         weather.weather[0].id,
